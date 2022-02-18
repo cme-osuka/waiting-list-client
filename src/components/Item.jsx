@@ -17,7 +17,7 @@ function Item(props) {
 
 
   return (
-    <div key={item.id} style={{ color: item.color }}>
+    <div key={item.id} style={{ color: item.color, padding: "6px 12px", border: "1px solid #f3f3f3" }}>
       {item.name} - {item.room} - {getTS(item.timestamp)}
       <button onClick={() => props.onLowerHand(item.id)}>✅</button>
     </div>
