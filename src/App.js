@@ -6,6 +6,11 @@ import { getRandomColor } from './utils';
 import WaitingList from './components/WaitingList';
 import ReactCanvasConfetti from 'react-canvas-confetti';
 
+import emptyFavicon from './assets/favicon.empty.svg';
+import waitingFavicon from './assets/favicon.waiting.svg';
+
+const favicon = document.querySelector('#favicon');
+
 function App() {
 	const [list, setList] = useState([]);
 	const socket = useRef();
@@ -15,6 +20,13 @@ function App() {
 	// ✅ Namn, Breakout room (optional)
 	// Ändra favicon/title om listan är tom eller inte
 	// Wishlist: Notifikation
+
+	useEffect(() => {
+		favicon.setAttribute(
+			'href',
+			list.length > 0 ? waitingFavicon : emptyFavicon
+		);
+	}, [list]);
 
 	const animationInstanceRef = useRef(null);
 
