@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import styles from "./InputBox.module.css";
+import React, { useState } from 'react';
+import styles from './InputBox.module.css';
 
 const breakoutRooms = Array(12)
-	.fill("")
+	.fill('')
 	.map((_, i) => (
-		<option value={`BR${i + 1}`} key={"option" + i}>
+		<option value={`BR${i + 1}`} key={'option' + i}>
 			BR{i + 1}
 		</option>
 	));
 
 function InputBox(props) {
-	const [name, setName] = useState("");
-	const [room, setRoom] = useState("general");
+	const [name, setName] = useState('');
+	const [room, setRoom] = useState('general');
 	// Namn, breakout-room
 
 	function handleNameChange(e) {
@@ -22,14 +22,20 @@ function InputBox(props) {
 		setRoom(e.target.value);
 	}
 
+	function handleSubmit(e) {
+		e.preventDefault();
+		props.onRaiseHand(name, room);
+	}
+
 	return (
-		<section className={styles.section}>
+		<form onSubmit={handleSubmit} className={styles.form}>
 			<input
 				className={styles.input}
 				onChange={handleNameChange}
 				placeholder="Namn"
 				type="text"
 				value={name}
+				required={true}
 			/>
 			<div className={styles.container}>
 				<div className={styles.selectContainer}>
@@ -42,14 +48,9 @@ function InputBox(props) {
 						{breakoutRooms}
 					</select>
 				</div>
-				<button
-					className={styles.button}
-					onClick={() => props.onRaiseHand(name, room)}
-				>
-					✋
-				</button>
+				<button className={styles.button}>✋</button>
 			</div>
-		</section>
+		</form>
 	);
 }
 

@@ -1,4 +1,4 @@
-.section {
+.form {
 	max-width: 600px;
 	margin: 2em auto;
 	padding: 1em;
@@ -48,7 +48,7 @@ input {
 }
 
 .selectContainer::after {
-	content: "ᐁ";
+	content: 'ᐁ';
 	position: absolute;
 	display: flex;
 	align-items: center;
